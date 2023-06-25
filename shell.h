@@ -64,12 +64,12 @@ typedef struct liststr
  *@arg: a string that is generated from getline containing arguements
  *@argv: an array of strings generated from arg
  *@path: a string path of the current command
- *@argc: the argument count@history: the history node
+ *@argc: the argument count
+ *@history: the history node
  *@alias: is the alias node
  *@env_changed: on if environ was changed
  *@status: the return status of the last exec'd command
  *@cmd_buf: the address of pointer to cmd_buf, turns on if chaining
-
  */
 typedef struct passinfo
 {
