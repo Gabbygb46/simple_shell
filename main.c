@@ -2,14 +2,30 @@
 
 /**
  * main - is a entry point
+<<<<<<< HEAD
  * @ac: argumment count
  * @av: argument vector
+=======
+ * @ac: argument count
+ * @av: arg vector
+>>>>>>> aa9a4918c91b0ff041e6fdf473a055bcb2deebe2
  *
  * Return: success on 0, error on 1
  */
 int main(int ac, char **av)
 {
 	info_t info[] = { INFO_INIT };
+<<<<<<< HEAD
+=======
+	int fd = 2;
+
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd));
+
+	info_t info[] = { };
+>>>>>>> aa9a4918c91b0ff041e6fdf473a055bcb2deebe2
 	int f = 2;
 
 	asm ("mov %1, %0\n\t"
@@ -19,8 +35,8 @@ int main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		f = open(av[1], O_RDONLY);
-		if (f == -1)
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
@@ -35,7 +51,7 @@ int main(int ac, char **av)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = f;
+		info->readfd = fd;
 	}
 	populate_env_list(info);
 	read_history(info);
