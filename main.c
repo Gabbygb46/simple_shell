@@ -2,14 +2,14 @@
 
 /**
  * main - is a entry point
- * @ac: argument count
- * @av: argument vector
+ * @argc: argument count
+ * @argv: argument vector
  *
- * Return: 0 on success, 1 on error
+ * Return: success on 0, error on 1
  */
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
-	info_t info[] = { };
+	info_t info[] = { INFO_INIT };
 	int f = 2;
 
 	asm ("mov %1, %0\n\t"
@@ -17,18 +17,18 @@ int main(int ac, char **av)
 		: "=r" (f)
 		: "r" (f));
 
-	if (ac == 2)
+	if (argc == 2)
 	{
-		f = open(av[1], O_RDONLY);
+		f = open(argv[1], O_RDONLY);
 		if (f == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				_eputs(av[0]);
+				_eputs(argv[0]);
 				_eputs(": 0: Can't open ");
-				_eputs(av[1]);
+				_eputs(argv[1]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
 				exit(127);
@@ -39,6 +39,6 @@ int main(int ac, char **av)
 	}
 	populate_env_list(info);
 	read_history(info);
-	hsh(info, av);
+	hsh(info, argv);
 	return (EXIT_SUCCESS);
 }
