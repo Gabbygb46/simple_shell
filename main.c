@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * main - entry point
+ * main - is a entry point
  * @ac: argument count
  * @av: arg vector
  *
@@ -9,6 +9,7 @@
  */
 int main(int ac, char **av)
 {
+<<<<<<< HEAD
 	info_t info[] = { INFO_INIT };
 	int fd = 2;
 
@@ -16,6 +17,15 @@ int main(int ac, char **av)
 		"add $3, %0"
 		: "=r" (fd)
 		: "r" (fd));
+=======
+	info_t info[] = { };
+	int f = 2;
+
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (f)
+		: "r" (f));
+>>>>>>> 68e1b516ef2095fd3a0b2012ac49d7ab38ff6fa6
 
 	if (ac == 2)
 	{
